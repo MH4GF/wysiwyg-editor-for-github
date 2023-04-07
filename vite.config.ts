@@ -6,9 +6,12 @@ const manifest = defineManifest({
   manifest_version: 3,
   name: "WYSIWYG Editor for GitHub",
   version: "1.0.0",
-  action: {
-    default_popup: "index.html",
-  },
+  content_scripts: [
+    {
+      matches: ["https://github.com/*"],
+      js: ["src/script.ts"],
+    },
+  ],
 });
 
 // https://vitejs.dev/config/
