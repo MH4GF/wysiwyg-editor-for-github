@@ -48,7 +48,7 @@ export const App = () => {
         <RichTextTabButton selected={enabled} onClick={handleClick} />,
         githubTabnav
       )}
-      <RichTextTabPanel enabled={enabled} />
+      {enabled ? <RichTextTabPanel /> : null}
     </div>
   );
 };
