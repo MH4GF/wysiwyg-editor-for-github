@@ -1,1 +1,1 @@
-# wysiwyg-editor-for-github
+# richtext-editor-for-github
