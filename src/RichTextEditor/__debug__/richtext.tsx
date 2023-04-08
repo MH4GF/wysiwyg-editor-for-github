@@ -4,6 +4,6 @@ import { RichTextEditor } from "../RichTextEditor";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RichTextEditor />
+    <RichTextEditor initialValue="foo" />
   </React.StrictMode>
 );
