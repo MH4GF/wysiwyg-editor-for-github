@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { $getRoot, $getSelection } from "lexical";
-import { useEffect } from "react";
 
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import {
@@ -11,7 +10,6 @@ import {
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { nodes } from "./nodes";
 import { TreeViewPlugin } from "./plugins";
@@ -30,21 +28,6 @@ function onChange(editorState) {
 
     console.log(root, selection);
   });
-}
-
-// Lexical React plugins are React components, which makes them
-// highly composable. Furthermore, you can lazy load plugins if
-// desired, so you don't pay the cost for plugins until you
-// actually use them.
-function MyCustomAutoFocusPlugin() {
-  const [editor] = useLexicalComposerContext();
-
-  useEffect(() => {
-    // Focus the editor when the effect fires!
-    editor.focus();
-  }, [editor]);
-
-  return null;
 }
 
 // Catch any errors that occur during Lexical updates and log them
@@ -71,7 +54,6 @@ const Editor = () => {
       />
       <OnChangePlugin onChange={onChange} />
       <HistoryPlugin />
-      <MyCustomAutoFocusPlugin />
       <TreeViewPlugin />
     </LexicalComposer>
   );
