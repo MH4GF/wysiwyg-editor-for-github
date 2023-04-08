@@ -12,6 +12,8 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { nodes } from "./nodes";
+import { ELEMENT_TRANSFORMERS } from "@lexical/markdown";
+import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
 import { TreeViewPlugin } from "./plugins";
 
 const theme = {
@@ -47,6 +49,7 @@ const initialConfig: InitialConfigType = {
 const Editor = () => {
   return (
     <LexicalComposer initialConfig={initialConfig}>
+      <MarkdownShortcutPlugin transformers={ELEMENT_TRANSFORMERS} />
       <RichTextPlugin
         contentEditable={<ContentEditable />}
         placeholder={<div>Enter some text...</div>}
