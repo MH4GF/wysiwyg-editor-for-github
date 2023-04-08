@@ -37,9 +37,10 @@ const initialConfig = (initialValue: string): InitialConfigType => ({
 type Props = {
   value: string;
   onUpdate: (value: string) => void;
+  isDebug?: boolean;
 };
 
-const Editor: FC<Props> = ({ value, onUpdate }) => {
+const Editor: FC<Props> = ({ value, onUpdate, isDebug }) => {
   return (
     <LexicalComposer initialConfig={initialConfig(value)}>
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
@@ -50,7 +51,7 @@ const Editor: FC<Props> = ({ value, onUpdate }) => {
       />
       <HistoryPlugin />
       <SyncExternalValuePlugin value={value} onUpdate={onUpdate} />
-      <TreeViewPlugin />
+      {isDebug ? <TreeViewPlugin /> : <></>}
     </LexicalComposer>
   );
 };
