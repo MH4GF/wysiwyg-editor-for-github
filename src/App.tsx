@@ -1,10 +1,11 @@
 import { useCallback } from "react";
 import { createPortal } from "react-dom";
+import { SELECTORS } from "./GitHubPage/constants";
 import { useSyncGitHubTabsState } from "./GitHubPage/useSyncGitHubTabsState";
 import { RichTextTabButton } from "./RichTextTabButton";
 import { RichTextTabPanel } from "./RichTextTabPanel";
 
-const githubTabnav = document.querySelector(".tabnav-tabs");
+const githubTabnav = document.querySelector(SELECTORS.TABNAV);
 if (!githubTabnav) {
   throw new Error("Cannot find tab nav");
 }

@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App";
+import { SELECTORS } from "./GitHubPage/constants";
 
-const tabContainer = document.querySelector(
-  "tab-container.js-previewable-comment-form"
-);
+const tabContainer = document.querySelector(SELECTORS.TAB_CONTAINER);
 if (!tabContainer) {
   throw new Error("Cannot find tab container");
 }
