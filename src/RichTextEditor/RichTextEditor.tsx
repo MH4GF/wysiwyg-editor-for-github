@@ -9,12 +9,11 @@ import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { nodes } from "./nodes";
-import {
-  $convertFromMarkdownString,
-  ELEMENT_TRANSFORMERS,
-} from "@lexical/markdown";
+import { $convertFromMarkdownString } from "@lexical/markdown";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
 import { TreeViewPlugin } from "./plugins";
+import { SyncExternalValuePlugin } from "./plugins/SyncExternalValuePlugin";
+import { TRANSFORMERS } from "./constants";
 
 const theme = {
   // Theme styling goes here
@@ -29,28 +28,28 @@ function onError(error) {
 
 const initialConfig = (initialValue: string): InitialConfigType => ({
   namespace: "MyEditor",
-  editorState: () =>
-    $convertFromMarkdownString(initialValue, ELEMENT_TRANSFORMERS),
+  editorState: () => $convertFromMarkdownString(initialValue, TRANSFORMERS),
   theme,
   onError,
   nodes,
 });
 
 type Props = {
-  initialValue: string;
+  value: string;
+  onUpdate: (value: string) => void;
 };
 
-const Editor: FC<Props> = ({ initialValue }) => {
-  console.log({ initialValue });
+const Editor: FC<Props> = ({ value, onUpdate }) => {
   return (
-    <LexicalComposer initialConfig={initialConfig(initialValue)}>
-      <MarkdownShortcutPlugin transformers={ELEMENT_TRANSFORMERS} />
+    <LexicalComposer initialConfig={initialConfig(value)}>
+      <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
       <RichTextPlugin
         contentEditable={<ContentEditable />}
         placeholder={<div>Enter some text...</div>}
         ErrorBoundary={LexicalErrorBoundary}
       />
       <HistoryPlugin />
+      <SyncExternalValuePlugin value={value} onUpdate={onUpdate} />
       <TreeViewPlugin />
     </LexicalComposer>
   );

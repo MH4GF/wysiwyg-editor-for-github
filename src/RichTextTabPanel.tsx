@@ -17,19 +17,30 @@ const useSyncGitHubContentState = () => {
   const getSnapshot = useCallback(() => textarea?.value, []);
   const content = useSyncExternalStore(subscribe, getSnapshot) ?? "";
 
-  return { content };
+  const setContent = useCallback(
+    (value: string) => {
+      if (!textarea) {
+        return;
+      }
+
+      if (textarea.value === value) {
+        return;
+      }
+
+      textarea.value = value;
+    },
+    [textarea]
+  );
+
+  return { content, setContent };
 };
 
-type Props = {
-  enabled: boolean;
-};
-
-export const RichTextTabPanel: FC<Props> = ({ enabled }) => {
-  const { content } = useSyncGitHubContentState();
+export const RichTextTabPanel: FC = () => {
+  const { content, setContent } = useSyncGitHubContentState();
 
   return (
-    <div role="tabpanel" hidden={!enabled}>
-      <RichTextEditor initialValue={content} />
+    <div role="tabpanel">
+      <RichTextEditor value={content} onUpdate={setContent} />
     </div>
   );
 };
