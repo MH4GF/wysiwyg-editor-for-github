@@ -1,7 +1,5 @@
 import { FC } from "react";
 
-import { $getRoot, $getSelection } from "lexical";
-
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import {
   InitialConfigType,
@@ -9,7 +7,6 @@ import {
 } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { nodes } from "./nodes";
 import { ELEMENT_TRANSFORMERS } from "@lexical/markdown";
@@ -19,18 +16,6 @@ import { TreeViewPlugin } from "./plugins";
 const theme = {
   // Theme styling goes here
 };
-
-// When the editor changes, you can get notified via the
-// LexicalOnChangePlugin!
-function onChange(editorState) {
-  editorState.read(() => {
-    // Read the contents of the EditorState here.
-    const root = $getRoot();
-    const selection = $getSelection();
-
-    console.log(root, selection);
-  });
-}
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -55,7 +40,6 @@ const Editor = () => {
         placeholder={<div>Enter some text...</div>}
         ErrorBoundary={LexicalErrorBoundary}
       />
-      <OnChangePlugin onChange={onChange} />
       <HistoryPlugin />
       <TreeViewPlugin />
     </LexicalComposer>
