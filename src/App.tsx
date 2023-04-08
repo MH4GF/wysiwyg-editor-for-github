@@ -1,8 +1,12 @@
 import { useCallback } from "react";
 import { createPortal } from "react-dom";
-import { SELECTORS, useSyncGitHubTabsState } from "./GitHubPage";
+import {
+  SELECTORS,
+  useSyncGitHubTabsState,
+  useSyncGitHubTextareaValue,
+} from "./GitHubPage";
 import { RichTextTabButton } from "./RichTextTabButton";
-import { RichTextTabPanel } from "./RichTextTabPanel";
+import { RichTextEditor } from "./RichTextEditor";
 
 const githubTabnav = document.querySelector(SELECTORS.TABNAV);
 if (!githubTabnav) {
@@ -10,6 +14,7 @@ if (!githubTabnav) {
 }
 
 export const App = () => {
+  const { value, setValue } = useSyncGitHubTextareaValue();
   const [enabled, setEnabled] = useSyncGitHubTabsState();
   const handleClick = useCallback(
     () => setEnabled(!enabled),
@@ -22,7 +27,9 @@ export const App = () => {
         <RichTextTabButton selected={enabled} onClick={handleClick} />,
         githubTabnav
       )}
-      {enabled ? <RichTextTabPanel /> : null}
+      <div role="tabpanel">
+        {enabled ? <RichTextEditor value={value} onUpdate={setValue} /> : null}
+      </div>
     </div>
   );
 };
