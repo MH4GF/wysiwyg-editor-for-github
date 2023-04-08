@@ -1,23 +1,39 @@
-import { useMemo, useCallback, useSyncExternalStore, useState } from "react";
+import { useMemo, useCallback, useSyncExternalStore, RefObject } from "react";
 import { SELECTORS } from "./constants";
 
-export const useSyncGitHubTabsState = () => {
-  const writeTab = useMemo(() => {
-    return document.querySelector(SELECTORS.WRITE_TAB);
-  }, []);
+type Args = {
+  richtextButtonRef: RefObject<HTMLButtonElement>;
+};
+
+/**
+ *
+ * GitHubのエディタタブの状態を同期する
+ * この拡張機能から挿入したボタンが現在選択されているかどうかを返す
+ * https://github.com/MH4GF/richtext-editor-for-github/issues/newでデベロッパーツールを開き、
+ * ソースのindex.jsを見るとタブの変更処理を行っていることがわかる
+ */
+export const useSyncGitHubTabsState = ({ richtextButtonRef }: Args) => {
+  const tabContainer = useMemo(
+    () => document.querySelector(SELECTORS.TAB_CONTAINER),
+    []
+  );
 
   const subscribe = useCallback(
     (onStoreChange: () => void) => {
-      writeTab?.addEventListener("click", onStoreChange);
-      return () => writeTab?.removeEventListener("click", onStoreChange);
+      tabContainer?.addEventListener("tab-container-changed", onStoreChange);
+      return () =>
+        tabContainer?.removeEventListener(
+          "tab-container-changed",
+          onStoreChange
+        );
     },
-    [writeTab]
+    [tabContainer]
   );
 
-  const getSnapshot = useCallback(() => writeTab?.ariaSelected === "true", []);
-  const githubTabClicked = useSyncExternalStore(subscribe, getSnapshot);
+  const getSnapshot = useCallback(
+    () => richtextButtonRef.current?.ariaSelected === "true",
+    []
+  );
 
-  const [enabled, setEnabled] = useState(false);
-
-  return [enabled && githubTabClicked, setEnabled] as const;
+  return useSyncExternalStore(subscribe, getSnapshot);
 };
