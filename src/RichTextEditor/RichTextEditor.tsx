@@ -13,7 +13,7 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { HeadingNode, QuoteNode } from "@lexical/rich-text";
+import { nodes } from "./nodes";
 
 const theme = {
   // Theme styling goes here
@@ -57,7 +57,7 @@ const initialConfig: InitialConfigType = {
   namespace: "MyEditor",
   theme,
   onError,
-  nodes: [HeadingNode, QuoteNode],
+  nodes,
 };
 
 const Editor = () => {
