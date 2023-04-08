@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App";
-import { SELECTORS } from "./GitHubPage/constants";
+import { SELECTORS } from "./GitHubPage";
 
 const tabContainer = document.querySelector(SELECTORS.TAB_CONTAINER);
 if (!tabContainer) {

@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { createPortal } from "react-dom";
-import { SELECTORS } from "./GitHubPage/constants";
-import { useSyncGitHubTabsState } from "./GitHubPage/useSyncGitHubTabsState";
+import { SELECTORS, useSyncGitHubTabsState } from "./GitHubPage";
 import { RichTextTabButton } from "./RichTextTabButton";
 import { RichTextTabPanel } from "./RichTextTabPanel";
 

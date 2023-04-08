@@ -1,4 +1,4 @@
-import { useSyncGitHubTextareaValue } from "./GitHubPage/useSyncGitHubTextareaValue";
+import { useSyncGitHubTextareaValue } from "./GitHubPage";
 import { RichTextEditor } from "./RichTextEditor";
 
 export const RichTextTabPanel = () => {
