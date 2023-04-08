@@ -14,6 +14,7 @@ import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { nodes } from "./nodes";
+import { TreeViewPlugin } from "./plugins";
 
 const theme = {
   // Theme styling goes here
@@ -71,6 +72,7 @@ const Editor = () => {
       <OnChangePlugin onChange={onChange} />
       <HistoryPlugin />
       <MyCustomAutoFocusPlugin />
+      <TreeViewPlugin />
     </LexicalComposer>
   );
 };
