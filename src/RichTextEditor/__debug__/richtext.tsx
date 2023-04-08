@@ -7,6 +7,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <RichTextEditor
       value="foo"
       onUpdate={(value) => console.log("onUpdate", value)}
+      isDebug
     />
   </React.StrictMode>
 );
