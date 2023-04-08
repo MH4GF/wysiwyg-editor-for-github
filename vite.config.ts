@@ -9,7 +9,7 @@ const manifest = defineManifest({
   content_scripts: [
     {
       matches: ["https://github.com/*"],
-      js: ["src/script.ts"],
+      js: ["src/content.tsx"],
     },
   ],
 });
