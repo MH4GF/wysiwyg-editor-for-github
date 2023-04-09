@@ -58,10 +58,7 @@ const Editor: FC<Props> = ({ value, onUpdate, isDebug }) => {
 
 export const RichTextEditor: FC<Props> = (props) => {
   return (
-    <div
-      className="write-content tooltipped tooltipped-ne tooltipped-no-delay tooltipped-align-left-1 hide-reaction-suggestion upload-enabled mx-0 mt-2 mb-2 mx-md-2 hx_sm-hide-drag-drop js-reaction-suggestion"
-      style={{ width: "100%" }}
-    >
+    <div className="m-md-2">
       <Editor {...props} />
     </div>
   );
