@@ -15,9 +15,9 @@ import { TreeViewPlugin } from "./plugins";
 import { SyncExternalValuePlugin } from "./plugins/SyncExternalValuePlugin";
 import { TRANSFORMERS } from "./constants";
 
-const theme = {
-  // Theme styling goes here
-};
+import clsx from "clsx";
+
+import { container, editor } from "./RichTextEditor.css";
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -29,7 +29,6 @@ function onError(error: Error) {
 const initialConfig = (initialValue: string): InitialConfigType => ({
   namespace: "MyEditor",
   editorState: () => $convertFromMarkdownString(initialValue, TRANSFORMERS),
-  theme,
   onError,
   nodes,
 });
@@ -45,7 +44,11 @@ const Editor: FC<Props> = ({ value, onUpdate, isDebug }) => {
     <LexicalComposer initialConfig={initialConfig(value)}>
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
       <RichTextPlugin
-        contentEditable={<ContentEditable />}
+        contentEditable={
+          <div className={clsx("markdown-body", container)}>
+            <ContentEditable className={editor} />
+          </div>
+        }
         placeholder={<div>Enter some text...</div>}
         ErrorBoundary={LexicalErrorBoundary}
       />
@@ -57,9 +60,5 @@ const Editor: FC<Props> = ({ value, onUpdate, isDebug }) => {
 };
 
 export const RichTextEditor: FC<Props> = (props) => {
-  return (
-    <div className="m-md-2">
-      <Editor {...props} />
-    </div>
-  );
+  return <Editor {...props} />;
 };
