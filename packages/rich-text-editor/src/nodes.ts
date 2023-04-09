@@ -1,7 +1,7 @@
-import { HeadingNode, QuoteNode } from "@lexical/rich-text";
-import { Klass, LexicalNode } from "lexical";
-import { ListItemNode, ListNode } from "@lexical/list";
-import { CodeHighlightNode, CodeNode } from "@lexical/code";
+import { CodeHighlightNode, CodeNode } from '@lexical/code'
+import { ListItemNode, ListNode } from '@lexical/list'
+import { HeadingNode, QuoteNode } from '@lexical/rich-text'
+import type { Klass, LexicalNode } from 'lexical'
 
 export const nodes: Klass<LexicalNode>[] = [
   HeadingNode,
@@ -10,4 +10,4 @@ export const nodes: Klass<LexicalNode>[] = [
   ListItemNode,
   CodeHighlightNode,
   CodeNode,
-];
+]

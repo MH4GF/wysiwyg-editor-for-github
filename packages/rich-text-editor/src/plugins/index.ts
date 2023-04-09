@@ -1,1 +1,1 @@
-export { TreeViewPlugin } from "./TreeViewPlugin";
+export { TreeViewPlugin } from './TreeViewPlugin'
