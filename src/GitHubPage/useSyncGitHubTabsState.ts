@@ -1,9 +1,11 @@
-import { useMemo, useCallback, useSyncExternalStore, RefObject } from "react";
-import { SELECTORS } from "./constants";
+import type { RefObject } from 'react'
+import { useMemo, useCallback, useSyncExternalStore } from 'react'
 
-type Args = {
-  richtextButtonRef: RefObject<HTMLButtonElement>;
-};
+import { SELECTORS } from './constants'
+
+interface Args {
+  richtextButtonRef: RefObject<HTMLButtonElement>
+}
 
 /**
  *
@@ -13,27 +15,17 @@ type Args = {
  * ソースのindex.jsを見るとタブの変更処理を行っていることがわかる
  */
 export const useSyncGitHubTabsState = ({ richtextButtonRef }: Args) => {
-  const tabContainer = useMemo(
-    () => document.querySelector(SELECTORS.TAB_CONTAINER),
-    []
-  );
+  const tabContainer = useMemo(() => document.querySelector(SELECTORS.TAB_CONTAINER), [])
 
   const subscribe = useCallback(
     (onStoreChange: () => void) => {
-      tabContainer?.addEventListener("tab-container-changed", onStoreChange);
-      return () =>
-        tabContainer?.removeEventListener(
-          "tab-container-changed",
-          onStoreChange
-        );
+      tabContainer?.addEventListener('tab-container-changed', onStoreChange)
+      return () => tabContainer?.removeEventListener('tab-container-changed', onStoreChange)
     },
-    [tabContainer]
-  );
+    [tabContainer],
+  )
 
-  const getSnapshot = useCallback(
-    () => richtextButtonRef.current?.ariaSelected === "true",
-    []
-  );
+  const getSnapshot = useCallback(() => richtextButtonRef.current?.ariaSelected === 'true', [])
 
-  return useSyncExternalStore(subscribe, getSnapshot);
-};
+  return useSyncExternalStore(subscribe, getSnapshot)
+}

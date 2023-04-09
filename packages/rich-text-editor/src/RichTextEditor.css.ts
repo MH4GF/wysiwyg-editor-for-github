@@ -1,9 +1,9 @@
-import { style } from "@vanilla-extract/css";
+import { style } from '@vanilla-extract/css'
 
 export const container = style({
-  margin: "10px",
-});
+  margin: '10px',
+})
 
 export const editor = style({
-  padding: "10px",
-});
+  padding: '10px',
+})

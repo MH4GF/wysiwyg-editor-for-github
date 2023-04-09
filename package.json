@@ -6,21 +6,33 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "run-p lint:*",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier --check . --ignore-path .gitignore",
+    "lint:dependency": "depcruise src packages",
+    "format": "run-p format:*",
+    "format:eslint": "eslint . --fix",
+    "format:prettier": "prettier --write . --ignore-path .gitignore"
   },
   "packageManager": "pnpm@8.1.1",
   "dependencies": {
-    "@vanilla-extract/css": "^1.11.0",
-    "@vanilla-extract/vite-plugin": "^3.8.0",
     "@project/rich-text-editor": "workspace:^",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
+    "@mh4gf/eslint-config": "^0.3.0",
+    "@mh4gf/prettier-config": "^0.1.2",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@vanilla-extract/css": "^1.11.0",
+    "@vanilla-extract/vite-plugin": "^3.8.0",
     "@vitejs/plugin-react-swc": "^3.2.0",
+    "dependency-cruiser": "^12.11.1",
+    "npm-run-all": "^4.1.5",
     "typescript": "^4.9.5",
     "vite": "^4.2.1"
   }
