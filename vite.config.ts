@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { crx, defineManifest } from "@crxjs/vite-plugin";
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 
 const manifest = defineManifest({
   manifest_version: 3,
@@ -16,5 +17,5 @@ const manifest = defineManifest({
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), crx({ manifest })],
+  plugins: [react(), crx({ manifest }), vanillaExtractPlugin()],
 });

@@ -15,9 +15,9 @@ import { TreeViewPlugin } from "./plugins";
 import { SyncExternalValuePlugin } from "./plugins/SyncExternalValuePlugin";
 import { TRANSFORMERS } from "./constants";
 
-const theme = {
-  // Theme styling goes here
-};
+import clsx from "clsx";
+
+import { container, editor } from "./RichTextEditor.css";
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -29,7 +29,6 @@ function onError(error: Error) {
 const initialConfig = (initialValue: string): InitialConfigType => ({
   namespace: "MyEditor",
   editorState: () => $convertFromMarkdownString(initialValue, TRANSFORMERS),
-  theme,
   onError,
   nodes,
 });
@@ -40,12 +39,16 @@ type Props = {
   isDebug?: boolean;
 };
 
-const Editor: FC<Props> = ({ value, onUpdate, isDebug }) => {
+export const RichTextEditor: FC<Props> = ({ value, onUpdate, isDebug }) => {
   return (
     <LexicalComposer initialConfig={initialConfig(value)}>
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
       <RichTextPlugin
-        contentEditable={<ContentEditable />}
+        contentEditable={
+          <div className={clsx("markdown-body", container)}>
+            <ContentEditable className={editor} />
+          </div>
+        }
         placeholder={<div>Enter some text...</div>}
         ErrorBoundary={LexicalErrorBoundary}
       />
@@ -53,16 +56,5 @@ const Editor: FC<Props> = ({ value, onUpdate, isDebug }) => {
       <SyncExternalValuePlugin value={value} onUpdate={onUpdate} />
       {isDebug ? <TreeViewPlugin /> : <></>}
     </LexicalComposer>
-  );
-};
-
-export const RichTextEditor: FC<Props> = (props) => {
-  return (
-    <div
-      className="write-content tooltipped tooltipped-ne tooltipped-no-delay tooltipped-align-left-1 hide-reaction-suggestion upload-enabled mx-0 mt-2 mb-2 mx-md-2 hx_sm-hide-drag-drop js-reaction-suggestion"
-      style={{ width: "100%" }}
-    >
-      <Editor {...props} />
-    </div>
   );
 };
