@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint:eslint": "eslint ."
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier --check . --ignore-path .gitignore",
+    "format:eslint": "eslint . --fix",
+    "format:prettier": "prettier --write . --ignore-path .gitignore"
   },
   "packageManager": "pnpm@8.1.1",
   "dependencies": {
@@ -18,6 +21,7 @@
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
     "@mh4gf/eslint-config": "^0.3.0",
+    "@mh4gf/prettier-config": "^0.1.2",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
