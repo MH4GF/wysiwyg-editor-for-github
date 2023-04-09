@@ -39,7 +39,7 @@ type Props = {
   isDebug?: boolean;
 };
 
-const Editor: FC<Props> = ({ value, onUpdate, isDebug }) => {
+export const RichTextEditor: FC<Props> = ({ value, onUpdate, isDebug }) => {
   return (
     <LexicalComposer initialConfig={initialConfig(value)}>
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
@@ -57,8 +57,4 @@ const Editor: FC<Props> = ({ value, onUpdate, isDebug }) => {
       {isDebug ? <TreeViewPlugin /> : <></>}
     </LexicalComposer>
   );
-};
-
-export const RichTextEditor: FC<Props> = (props) => {
-  return <Editor {...props} />;
 };
