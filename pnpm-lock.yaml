@@ -22,6 +22,9 @@ dependencies:
   '@vanilla-extract/vite-plugin':
     specifier: ^3.8.0
     version: 3.8.0(vite@4.2.1)
+  clsx:
+    specifier: ^1.2.1
+    version: 1.2.1
   lexical:
     specifier: ^0.9.1
     version: 0.9.1
@@ -1311,6 +1314,11 @@ packages:
       parse5: 7.1.2
       parse5-htmlparser2-tree-adapter: 7.0.0
     dev: true
+
+  /clsx@1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
