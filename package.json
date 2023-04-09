@@ -10,15 +10,9 @@
   },
   "packageManager": "pnpm@8.1.1",
   "dependencies": {
-    "@lexical/code": "^0.9.1",
-    "@lexical/list": "^0.9.1",
-    "@lexical/markdown": "^0.9.1",
-    "@lexical/react": "^0.9.1",
-    "@lexical/rich-text": "^0.9.1",
     "@vanilla-extract/css": "^1.11.0",
     "@vanilla-extract/vite-plugin": "^3.8.0",
-    "clsx": "^1.2.1",
-    "lexical": "^0.9.1",
+    "@project/rich-text-editor": "workspace:^",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

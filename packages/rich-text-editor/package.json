@@ -1,0 +1,14 @@
+{
+  "name": "@project/rich-text-editor",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@lexical/code": "^0.9.1",
+    "@lexical/list": "^0.9.1",
+    "@lexical/markdown": "^0.9.1",
+    "@lexical/react": "^0.9.1",
+    "@lexical/rich-text": "^0.9.1",
+    "@vanilla-extract/css": "^1.11.0",
+    "clsx": "^1.2.1",
+    "lexical": "^0.9.1"
+  }
+}

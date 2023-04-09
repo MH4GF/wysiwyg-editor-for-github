@@ -5,7 +5,7 @@ import {
   useSyncGitHubTabsState,
   useSyncGitHubTextareaValue,
 } from "./GitHubPage";
-import { RichTextEditor } from "./RichTextEditor";
+import { RichTextEditor } from "@project/rich-text-editor";
 
 const githubTabnav = document.querySelector(SELECTORS.TABNAV);
 if (!githubTabnav) {
