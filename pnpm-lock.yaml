@@ -6,6 +6,12 @@ importers:
       '@project/rich-text-editor':
         specifier: workspace:^
         version: link:packages/rich-text-editor
+      dom-loaded:
+        specifier: ^3.0.0
+        version: 3.0.0
+      github-url-detection:
+        specifier: ^7.1.0
+        version: 7.1.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2550,6 +2556,14 @@ packages:
       esutils: 2.0.3
     dev: true
 
+  /dom-loaded@3.0.0:
+    resolution:
+      {
+        integrity: sha512-XBByp17aE0owJhq5unCdzc9XeWdX7a5l6YaxL02j/kCK2AFjyUA/eKgLO+QqUvjOg3UkpN4dt5cuerUqVYnWoQ==,
+      }
+    engines: { node: '>=12' }
+    dev: false
+
   /dom-serializer@2.0.0:
     resolution:
       {
@@ -3272,6 +3286,14 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
     dev: true
+
+  /github-url-detection@7.1.0:
+    resolution:
+      {
+        integrity: sha512-t04jN7JeF95I8ctWjMEPBRf9TMFXOUoB1Ridzwfvt2Cg/M9Wj8Qw/+tbWMzyyEUDSaeCX9eOBLt5ViNaw7kuEw==,
+      }
+    engines: { node: '>=18' }
+    dev: false
 
   /glob-parent@5.1.2:
     resolution:

@@ -1,11 +1,6 @@
-import type { RefObject } from 'react'
 import { useMemo, useCallback, useSyncExternalStore } from 'react'
 
 import { SELECTORS } from './constants'
-
-interface Args {
-  richtextButtonRef: RefObject<HTMLButtonElement>
-}
 
 /**
  *
@@ -14,7 +9,7 @@ interface Args {
  * https://github.com/MH4GF/richtext-editor-for-github/issues/newでデベロッパーツールを開き、
  * ソースのindex.jsを見るとタブの変更処理を行っていることがわかる
  */
-export const useSyncGitHubTabsState = ({ richtextButtonRef }: Args) => {
+export const useSyncGitHubTabsState = () => {
   const tabContainer = useMemo(() => document.querySelector(SELECTORS.TAB_CONTAINER), [])
 
   const subscribe = useCallback(
@@ -25,7 +20,10 @@ export const useSyncGitHubTabsState = ({ richtextButtonRef }: Args) => {
     [tabContainer],
   )
 
-  const getSnapshot = useCallback(() => richtextButtonRef.current?.ariaSelected === 'true', [])
+  const getSnapshot = useCallback(
+    () => document.querySelector(SELECTORS.RICHTEXT_TAB)?.ariaSelected === 'true',
+    [],
+  )
 
   return useSyncExternalStore(subscribe, getSnapshot)
 }
